@@ -1,0 +1,30 @@
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    password: String!
+}
+
+input AuthData{
+    email:String!
+    password:String!
+}
+
+type SigninPayload{
+    token:String
+    user:User
+}
+
+# Root
+type Query {
+    getUsers: [User]!
+    countUsers: Long!
+}
+
+scalar Long
+
+# Root
+type Mutation {
+    registerUser(name:String!, email:String!, password:String ):User!
+    signIn(auth: AuthData): SigninPayload
+}
