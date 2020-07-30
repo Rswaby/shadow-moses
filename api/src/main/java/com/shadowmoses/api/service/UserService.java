@@ -1,12 +1,13 @@
 package com.shadowmoses.api.service;
 
+import com.mongodb.client.MongoCollection;
 import com.shadowmoses.api.model.Auth.AuthData;
 import com.shadowmoses.api.model.Auth.SignInPayload;
 import com.shadowmoses.api.model.User;
 import com.shadowmoses.api.repository.UserRepository;
 import graphql.GraphQLException;
-import graphql.schema.DataFetcher;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +40,9 @@ public class UserService {
     }
 
     public User getUserByEmail(final String email){
-        return null;//userRepository.finderByEmail(email);
+        log.info("Looking up Email: "+email);
+//        Document doc = users.find(eq("email",email)).first();
+        return null;
     }
     public SignInPayload signIn(final AuthData authData) throws IllegalAccessException{
         System.out.println("SIGNIN USER");
@@ -47,5 +50,19 @@ public class UserService {
         log.debug(authData.toString());
         User user = getUserByEmail(authData.getEmail());
         throw new GraphQLException("Invalid Credentials:  " + user);
+    }
+
+    public User convertToUserObj(Document doc){
+        if (doc == null){
+            return null;
+        }
+        User user = User.builder()
+                .id(doc.get("_id").toString())
+                .name(doc.getString("name"))
+                .email(doc.getString("email"))
+                .password(doc.getString("password"))
+                .build();
+        log.info("returning User: " + user.toString());
+        return user;
     }
 }
