@@ -43,10 +43,16 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
     public SignInPayload signIn(AuthData authData) throws IllegalAccessException{
-        System.out.println("SIGNIN USER");
-        log.debug("User Login");
+        log.debug("User signIn");
         log.debug(authData.toString());
+
         User user = getUserByEmail(authData.getEmail());
+        if(user.getPassword().equals(authData.getPassword())){
+            return SignInPayload.builder()
+                    .token(user.getId())
+                    .user(user)
+                    .build();
+        }
         throw new GraphQLException("Invalid Credentials:  " + user);
     }
 
