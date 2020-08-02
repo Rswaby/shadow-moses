@@ -3,11 +3,15 @@ package com.shadowmoses.api.model.Auth;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class AuthData {
-    private final String email;
-    private final String password;
+    private  String email;
+    private  String password;
+
 }

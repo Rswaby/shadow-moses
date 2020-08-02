@@ -4,11 +4,13 @@ import com.shadowmoses.api.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class SignInPayload {
-    private final String token;
-    private final User user;
+    private  String token;
+    private  User user;
 }
