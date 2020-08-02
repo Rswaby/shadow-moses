@@ -1,6 +1,5 @@
 package com.shadowmoses.api.service;
 
-import com.mongodb.client.MongoCollection;
 import com.shadowmoses.api.model.Auth.AuthData;
 import com.shadowmoses.api.model.Auth.SignInPayload;
 import com.shadowmoses.api.model.User;
@@ -41,10 +40,9 @@ public class UserService {
 
     public User getUserByEmail(final String email){
         log.info("Looking up Email: "+email);
-//        Document doc = users.find(eq("email",email)).first();
-        return null;
+        return userRepository.findUserByEmail(email);
     }
-    public SignInPayload signIn(final AuthData authData) throws IllegalAccessException{
+    public SignInPayload signIn(AuthData authData) throws IllegalAccessException{
         System.out.println("SIGNIN USER");
         log.debug("User Login");
         log.debug(authData.toString());
