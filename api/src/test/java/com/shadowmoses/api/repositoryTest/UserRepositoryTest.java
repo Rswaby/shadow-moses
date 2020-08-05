@@ -37,7 +37,5 @@ public class UserRepositoryTest {
         Mockito.when(mockRepository.findUserByEmail(filterEmail)).thenReturn(user);
 
         Mockito.verify(mockRepository).findUserByEmail(filterEmail);
-//        assertEquals(userResult,user);
-
     }
 }
