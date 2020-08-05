@@ -28,11 +28,7 @@ public class Mutation implements GraphQLMutationResolver {
         return userService.registerUser(name, email, password);
     }
 
-    public SignInPayload signIn(final AuthData authData, DataFetchingEnvironment env) throws IllegalAccessException {
-        GraphQLContext context = env.getContext();
-        HttpServletRequest httpServletRequest = context.getHttpServletRequest().get();
-        log.info(httpServletRequest.getHeader("authorization"));
-        //don't really need this here but cool. thanks
+    public SignInPayload signIn(final AuthData authData) throws IllegalAccessException {
         return userService.signIn(authData);
     }
 
