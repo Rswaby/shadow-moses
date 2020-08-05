@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
 
 
 @Component
@@ -33,6 +32,7 @@ public class Mutation implements GraphQLMutationResolver {
         GraphQLContext context = env.getContext();
         HttpServletRequest httpServletRequest = context.getHttpServletRequest().get();
         log.info(httpServletRequest.getHeader("authorization"));
+        //don't really need this here but cool. thanks
         return userService.signIn(authData);
     }
 
