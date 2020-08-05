@@ -5,11 +5,15 @@ import com.shadowmoses.api.model.Auth.AuthData;
 import com.shadowmoses.api.model.Auth.SignInPayload;
 import com.shadowmoses.api.model.User;
 import com.shadowmoses.api.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
+
+
 @Component
+@Slf4j
 public class Mutation implements GraphQLMutationResolver {
     private final UserService userService;
 
@@ -25,7 +29,6 @@ public class Mutation implements GraphQLMutationResolver {
     public SignInPayload signIn(final AuthData authData) throws IllegalAccessException {
         return userService.signIn(authData);
     }
-
 
 }
 

@@ -10,6 +10,8 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 @Slf4j
 public class UserService {
@@ -53,7 +55,16 @@ public class UserService {
                     .user(user)
                     .build();
         }
-        throw new GraphQLException("Invalid Credentials:  " + user);
+        throw new GraphQLException("Invalid Credentials");
+    }
+
+    public Optional<User> validateUserToken(String token){
+        /*
+        for the purpose of this tutorial this method is just
+        a temp function you may need to add proper token validation
+        in a config class which i maay do later who knows.
+         */
+        return userRepository.findById(token);
     }
 
     public User convertToUserObj(Document doc){
