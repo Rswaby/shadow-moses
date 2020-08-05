@@ -5,13 +5,11 @@ import com.shadowmoses.api.model.Auth.AuthData;
 import com.shadowmoses.api.model.Auth.SignInPayload;
 import com.shadowmoses.api.model.User;
 import com.shadowmoses.api.service.UserService;
-import graphql.schema.DataFetchingEnvironment;
-import graphql.servlet.GraphQLContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
+
 
 
 @Component
